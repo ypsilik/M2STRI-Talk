@@ -1,0 +1,7 @@
+module AppliChat {
+  interface Talk {
+    attribute string msg;
+    attribute string name;
+    void sendMsg(in string msg);
+  };
+};
