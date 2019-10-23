@@ -1,7 +1,41 @@
 module AppliChat {
   interface Talk {
-    attribute string msg;
     attribute string name;
-    void sendMsg(in string msg);
+    void sendMsg(in string name, in string msg); // uniquement l'affichage
+  };
+
+  interface Chat {
+    void inscription(in Talk ior); // enregistre les IOR
+    void diffusionMsg(in string name, in string msg); // parcours et envoi les IOR
+    void disconnect(in Talk user);
   };
 };
+
+
+//C/S :
+
+//talkimpl servant blabla
+
+//transformer talkimpl en talk :
+//Talk ior = talkhelper.narrow(routePoA servanttoref) // on la deja qq part
+
+////
+////	STEP 1 : idlj
+////	-
+////	-
+////	- 1 methode pour afficher le msg (in)
+////STEP 2 : impl : TalkImpl extends TalkPAO
+////STEP 3 srv et cli comme convertisseur sans IHM
+////	thread code :
+////		thread t ) new thread {
+////			public void main {
+////				orb.run;
+////			}
+////		}; t.strat();
+////}
+////main C/S pour les clients talks
+////
+////S ... orb.run
+////C : diffuse msg, demande msg
+////
+////dans idl def autre interface avec 2 méthode 1 pour dif et une pour ecrire

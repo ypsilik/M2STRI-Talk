@@ -20,10 +20,10 @@ public class ServeurTalk {
 
 	        // Creation du servant
 	        //*********************
-	        TalkImpl monEuro = new TalkImpl();
+	        ChatImpl myChat = new ChatImpl();
 
 	        // Activer le servant au sein du POA et recuperer son ID
-	        byte[] monEuroId = rootPOA.activate_object(monEuro);
+	        byte[] monChatId = rootPOA.activate_object(myChat);
 
 	        // Activer le POA manager
 	        rootPOA.the_POAManager().activate();
@@ -41,10 +41,10 @@ public class ServeurTalk {
 	        nameToRegister[0] = new org.omg.CosNaming.NameComponent(nomObj,"");
 
 	        // Enregistrement de l'objet CORBA dans le service de noms
-	        nameRoot.rebind(nameToRegister,rootPOA.servant_to_reference(monEuro));
+	        nameRoot.rebind(nameToRegister,rootPOA.servant_to_reference(myChat));
 	        System.out.println("==> Nom '"+ nomObj + "' est enregistre dans le service de noms.");
 
-	        String IORServant = orb.object_to_string(rootPOA.servant_to_reference(monEuro));
+	        String IORServant = orb.object_to_string(rootPOA.servant_to_reference(myChat));
 	        System.out.println("L'objet possede la reference suivante :");
 	        System.out.println(IORServant);
 
